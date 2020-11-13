@@ -40,7 +40,7 @@ listsContainer.addEventListener('click', e => {
 
 tasksContainer.addEventListener('click', e => {
   if (e.target.tagName.toLowerCase() === 'input') {
-    const selectedList = lists.find(list.id === selectedListId)
+    const selectedList = lists.find(list => list.id === selectedListId)
     const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
     selectedTask.complete = e.target.checked
     // チェックしたタスクリストのセーブ
@@ -74,7 +74,7 @@ newListForm.addEventListener('submit', e => {
   saveAndRender()
 })
   // taskプッシュ
-newListForm.addEventListener('submit', e => {
+newTaskForm.addEventListener('submit', e => {
   e.preventDefault()
   const taskName = newTaskInput.value
   if (taskName == null || taskName === '') return
