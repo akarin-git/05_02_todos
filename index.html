@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+  <h1 class="title">todo list todo</h1>
+
+  <!-- list -->
+  <div class="all-tasks">
+    <h2 class="task-list-title">My lists</h2>
+
+    <!-- listのtask-->
+    <ul class="task-list" data-lists>
+      
+    </ul>
+
+    <!-- list form -->
+    <!-- data-new-list-inputはjavascriptで使用 -->
+    <form action="" data-new-list-form>
+      <input type="text"
+             class="new list" 
+             data-new-list-input
+             placeholder="new list name" 
+             aria-label="new list name"
+            />
+      <button class="btn create" aria-label="create new list">+</button>
+    </form>
+  </div>
+
+  <!-- task head -->
+  <div class="todo-list" data-list-display-container>
+    <div class="todo-header">
+      <h2 class="list-title" data-list-title>memo</h2>
+      <p class="task-count" data-list-count>0 tasks remaining</p>
+    </div>
+
+    <div class="todo-body">
+
+      <!-- taskデータ -->
+      <div class="tasks" data-tasks>
+        
+      </div>
+
+      <!-- task form -->
+      <div class="new-task-creator">
+        <form action="" data-new-task-form>
+          <input
+            type="text"
+            data-new-task-input
+            class="new task"
+            placeholder="new task name"
+            aria-label="new task name" 
+            />
+          <button class="btn create" aria-label="create new task">+</button>
+        </form>
+      </div>
+
+      <!-- 下ボタン -->
+      <div class="delete-stuff">
+
+        <!-- clear btn -->
+        <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
+        <!-- delete btn -->
+        <button class="btn delete" data-delete-list-button>Delete list</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- task data template これがtask dataに入る -->
+  <template id="task-template">
+    <div class="task">
+      <input type="checkbox"/>
+      <label>
+        <span class="custom-checkbox"></span>
+        
+      </label>
+    </div>
+  </template>
+
+
+
+</body>
+<script src="js/main.js"></script>
+</html>

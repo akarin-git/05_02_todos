@@ -1,0 +1,276 @@
+:root {
+  --clr-primary: rgb(54, 112, 199);
+  --clr-light: #f4f4f4;
+  --clr-dark: #333;
+  --clr-warning: rgb(99, 36, 36);
+}
+
+/* 使う色を保持 */
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  background-color: var(--clr-primary);
+  color: var(--clr-light);
+  /* var()で色の呼び出し */
+  display: grid;
+  grid:
+    "header header header header"auto "........lists active ......"auto / 1fr minmax(100px, 300px) minmax(250px, 500px) 1fr
+}
+
+.title {
+  grid-area: header;
+  text-align: center;
+  font-size: calc(7vw + 1.5rem);
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+  /* 文字の間のスペース */
+  margin: -0.3em 0 0 0.5em;
+  margin-bottom: 80px;
+}
+
+.all-tasks {
+  grid-area: lists;
+}
+
+.task-list {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  list-style: circle;
+  padding-left: 1.1em;
+}
+
+.list-name {
+  cursor: pointer;
+}
+
+.list-name:hover {
+  opacity: 0.7;
+}
+
+form {
+  display: flex;
+}
+
+.new.list::placeholder {
+  color: var(--clr-light);
+}
+
+.btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+/* クリエイト */
+.btn.create {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-right: 0.25em;
+  transition: opacity 250ms ease-in;
+}
+
+.btn.create:hover {
+  opacity: 0.7;
+}
+
+/* デリート */
+.btn.delete {
+  opacity: 0.7;
+  font-size: 1rem;
+  transition: color 200ms;
+}
+
+.btn.delete:hover {
+  color: var(--clr-warning);
+}
+
+
+
+/* 入力欄 */
+.new {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  /* currentColorはcolorと同じ色になる */
+  font-size: inherit;
+  /* inherit親に合わせる */
+  outline: none;
+  padding: 0.25em;
+  transition: border-bottom 150ms ease-in;
+  /* 入力する際にborderlineが変化 */
+  order: 2;
+  padding: 0.25em;
+}
+
+.new::placeholder {
+  opacity: 0.4;
+}
+
+/* フォーカスした時 */
+.new:focus::placeholder {
+  opacity: 0.15;
+}
+
+/* 入力欄下線 */
+.new:focus {
+  border-bottom-width: 3px;
+}
+
+
+/* formのプラスボタン */
+.new-task-creator .create {
+  color: var(--clr-primary);
+}
+
+.new.list {
+  font-size: 1.1rem;
+}
+
+.new.task {
+  margin-bottom: 0;
+}
+
+.active-list {
+  font-weight: 700;
+}
+
+/* 右のリスト */
+.todo-list {
+  --spacer: 2rem;
+  grid-area: active;
+  background: var(--clr-light);
+  color: var(--clr-dark);
+}
+
+
+.todo-header {
+  background: #e4e4e4;
+  padding: var(--spacer);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-title {
+  margin: 0 1em 0 0;
+}
+
+.task-count {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.todo-body {
+  padding: var(--spacer);
+  position: relative;
+}
+
+
+/* 素のチェックボックス */
+[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.task label {
+  display: flex-inline;
+  align-items: center;
+  /* labelの中身を均等に */
+  position: relative;
+
+}
+
+.task {
+  position: relative;
+  margin-bottom: 1.25em;
+}
+
+/* labelに線をつける */
+.task::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -0.5em;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.1;
+
+}
+
+/* 丸のチェックボックスを作る */
+.custom-checkbox {
+  --size: 0.75em;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  margin-right: var(--size);
+  cursor: pointer;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 300ms ease-in-out;
+}
+
+/* チェックボックスの大きさの変化 */
+.task:hover .custom-checkbox,
+[type="checkbox"]:focus+label .custom-checkbox {
+  transform: scale(1.2);
+  color: var(--clr-primary);
+}
+
+/* チェックボックスの中の丸 */
+[type="checkbox"]:checked+label .custom-checkbox {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  box-shadow: inset 0 0 0 3px whitesmoke;
+}
+
+[type="checkbox"]:checked+label {
+  opacity: .5;
+}
+
+/* チェック後の中央線位置*/
+.task label::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 1.5em;
+  top: 50%;
+  height: 3px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  /* originで右から左に消える出方 */
+  transition: transform 300ms ease-in-out;
+}
+
+[type="checkbox"]:checked+label::after {
+  transform: scaleX(1);
+  /* 中央線の出方（真ん中から外に） */
+  transform-origin: left;
+}
+
+.delete-stuff {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -35px;
+  color: var(--clr-light);
+}
