@@ -19,6 +19,7 @@ const clearCompleteTasksButton = document.querySelector('[data-clear-complete-ta
 const LOCAL_STORAGE_LIST_KEY = 'task,lists'
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
 // プッシュしたlist
+// JSON.parseで文字列の戻す
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
 // セレクトしたlist
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
@@ -102,6 +103,7 @@ function saveAndRender() {
 
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
+  // JSON.stringifyはJSON形式に変換
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
 
 }
@@ -142,9 +144,10 @@ function renderTasks(selectedList) {
 
 // taskの中身数カウント
 function renderTaskCount(selectedList) {
+  // チェックしてない数の表示
   const incompleteTaskCount = selectedList.tasks.filter(task => !task.complete).length
-  const taskString = incompleteTaskCount === 1 ? "task" : "tasks"
-  listCountElement.innerText = `${incompleteTaskCount} ${taskString} remaining`
+  const taskString = incompleteTaskCount 
+  listCountElement.innerText = `${incompleteTaskCount} remaining`
 }
 
 // リスト作成
