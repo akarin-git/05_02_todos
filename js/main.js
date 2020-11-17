@@ -137,7 +137,7 @@ function renderTasks(selectedList) {
     checkbox.checked = task.complete
     const label = taskElement.querySelector('label')
     label.htmlFor = task.id
-    label.append(task, name)
+    label.append(task. name)
     tasksContainer.appendChild(taskElement)
   })
 }
@@ -146,8 +146,8 @@ function renderTasks(selectedList) {
 function renderTaskCount(selectedList) {
   // チェックしてない数の表示
   const incompleteTaskCount = selectedList.tasks.filter(task => !task.complete).length
-  const taskString = incompleteTaskCount 
-  listCountElement.innerText = `${incompleteTaskCount} remaining`
+  const taskString = incompleteTaskCount  === 1 ? "task" : "tasks"
+  listCountElement.innerText = `${incompleteTaskCount} ${taskString}  remaining`
 }
 
 // リスト作成
